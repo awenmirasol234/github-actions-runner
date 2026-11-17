@@ -10,7 +10,7 @@ services:
     environment:
       REPO_URL: https://github.com/awenmirasol234/github-actions-runner
       RUNNER_SCOPE: repo
-      RUNNER_NAME: ctugwebserver-runner
+      RUNNER_NAME: github-runner
       LABELS: ubuntu,docker
       RUNNER_WORKDIR: /tmp/runner/_work
 
