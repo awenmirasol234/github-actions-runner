@@ -9,6 +9,7 @@ repository. The runner executes that repository's jobs on this machine.
 - `.env` - real values. Git ignored. Never commit.
 - `.env.example` - example values shown to new users.
 - `README.md` - user guide for reusing this folder on another repository.
+- `CHEATSHEET.md` - short command and troubleshooting reference.
 - `.github/workflows/runner-test.yml` - manual test job for the runner.
 - `data/` - created at runtime. Holds the runner identity: `.runner`,
   `.credentials`, work folders. Git ignored.
