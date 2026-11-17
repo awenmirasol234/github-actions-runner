@@ -17,8 +17,8 @@ Two changes. Everything else in this folder stays the same.
    Create the token at https://github.com/settings/tokens/new with the `repo`
    scope and admin access to the repository.
 
-   All three values are required. There are no defaults. If one is empty,
-   `docker compose up` stops and prints `<NAME> is not set in .env`.
+   Replace the three example values. There are no fallbacks. If a value is
+   empty, `docker compose up` stops and prints `<NAME> is not set in .env`.
    `compose.yml` does not need editing.
 
 2. Add a workflow to that repository. `runs-on` must match the labels.
