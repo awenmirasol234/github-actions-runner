@@ -11,6 +11,7 @@ jobs:
       - name: Check runner
         run: |
           echo "Runner connected successfully"
+          echo "runner: $RUNNER_NAME"
           hostname
           docker version
           docker compose version
