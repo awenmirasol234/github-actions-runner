@@ -10,6 +10,7 @@ repository. The runner executes that repository's jobs on this machine.
 - `.env.example` - example values shown to new users.
 - `README.md` - user guide for reusing this folder on another repository.
 - `CHEATSHEET.md` - short command and troubleshooting reference.
+- `PROMPT.md` - ready-to-paste prompt for aligning another repo with the runner.
 - `.github/workflows/runner-test.yml` - manual test job for the runner.
 - `data/` - created at runtime. Holds the runner identity: `.runner`,
   `.credentials`, work folders. Git ignored.
