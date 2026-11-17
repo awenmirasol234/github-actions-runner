@@ -4,13 +4,11 @@ services:
     container_name: github-runner
     restart: unless-stopped
 
-    env_file:
-      - .env
-
     environment:
-      REPO_URL: https://github.com/awenmirasol234/github-actions-runner
+      ACCESS_TOKEN: ${ACCESS_TOKEN:?ACCESS_TOKEN is not set in .env}
+      REPO_URL: ${REPO_URL:?REPO_URL is not set in .env}
       RUNNER_SCOPE: repo
-      RUNNER_NAME: github-runner
+      RUNNER_NAME: ${RUNNER_NAME:?RUNNER_NAME is not set in .env}
       LABELS: ubuntu,docker
       RUNNER_WORKDIR: /tmp/runner/_work
 

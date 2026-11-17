@@ -4,26 +4,24 @@ Runs one GitHub Actions runner for one repository, in Docker.
 
 ## Use it for another repository
 
-Three changes. Everything else in this folder stays the same.
+Two changes. Everything else in this folder stays the same.
 
-1. Put a token in `.env`. Create a classic token at
-   https://github.com/settings/tokens/new with the `repo` scope and admin access
-   to the repository.
+1. Fill `.env`. This is the only file you edit.
 
    ```
    ACCESS_TOKEN=ghp_your_token_here
+   REPO_URL=https://github.com/<owner>/<repository>
+   RUNNER_NAME=<short unique name>
    ```
 
-2. Change two lines in `compose.yml`.
+   Create the token at https://github.com/settings/tokens/new with the `repo`
+   scope and admin access to the repository.
 
-   ```yaml
-   REPO_URL: https://github.com/<owner>/<repository>
-   RUNNER_NAME: <short unique name>
-   ```
+   All three values are required. There are no defaults. If one is empty,
+   `docker compose up` stops and prints `<NAME> is not set in .env`.
+   `compose.yml` does not need editing.
 
-   Leave `RUNNER_SCOPE: repo` and `LABELS: ubuntu,docker` as they are.
-
-3. Add a workflow to that repository. `runs-on` must match the labels.
+2. Add a workflow to that repository. `runs-on` must match the labels.
 
    ```yaml
    name: Self Hosted Runner Test
@@ -54,7 +52,7 @@ docker compose logs -f
 ```
 
 Wait for `Listening for Jobs`. Then check the repository under
-Settings -> Actions -> Runners: the name from step 2 must show a green Idle dot.
+Settings -> Actions -> Runners: the name from step 1 must show a green Idle dot.
 
 The host can be Linux or Windows.
 
