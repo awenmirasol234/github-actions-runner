@@ -1,0 +1,16 @@
+name: Self Hosted Runner Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: [self-hosted, linux, x64, ubuntu, docker]
+
+    steps:
+      - name: Check runner
+        run: |
+          echo "Runner connected successfully"
+          hostname
+          docker version
+          docker compose version
