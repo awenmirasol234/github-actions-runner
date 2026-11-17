@@ -162,6 +162,14 @@ docker compose up -d
 
 Then delete the old offline entry in Settings -> Actions -> Runners.
 
+## Connectivity health check
+
+```bash
+docker exec -it <container_name> bash
+# inside:
+curl -fsS http://localhost:<port>/health
+```
+
 ## If it does not work
 
 | See | Do |

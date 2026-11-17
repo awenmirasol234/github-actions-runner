@@ -30,6 +30,7 @@ Part 3 - prove it
 9. Break the health endpoint on purpose and push again. The deploy must fail,
    roll back to the previous SHA, and exit non-zero.
 10. Restore it, push again, confirm a good deploy.
+11. Connectivity check: docker exec -it <container_name> bash, then curl the health endpoint.
 
 Rules
 - Never commit .env. Never put the token in compose.yml or a workflow file.

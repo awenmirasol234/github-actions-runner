@@ -95,6 +95,18 @@ Then delete the old runner in GitHub so it does not stay listed as offline.
 | Runner listed but Offline | Container stopped. `docker compose restart`. |
 | `docker: not found` in a job | Socket mount missing, or Docker Desktop is in Windows containers mode. |
 
+## Connectivity health check
+
+Verify communication between application containers and runner:
+
+```bash
+docker exec -it <container_name> bash
+# inside:
+curl -fsS http://localhost:<port>/health
+```
+
+Use the real container name and health port.
+
 ## Security
 
 Mounting `/var/run/docker.sock` gives the runner full control of the host's
