@@ -4,6 +4,9 @@ services:
     container_name: github-runner
     restart: unless-stopped
 
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
     environment:
       ACCESS_TOKEN: ${ACCESS_TOKEN:?ACCESS_TOKEN is not set in .env}
       REPO_URL: ${REPO_URL:?REPO_URL is not set in .env}
