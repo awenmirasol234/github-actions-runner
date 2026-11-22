@@ -12,9 +12,10 @@ Read first in C:\Dev\github-actions-runner: AGENTS.md, README.md, CHEATSHEET.md.
 Part 1 - point the runner at the app repo
 1. Edit .env: REPO_URL=https://github.com/<owner>/<app>, set RUNNER_NAME,
    keep the existing ACCESS_TOKEN (classic PAT, repo scope, admin on the repo).
-2. Run: docker compose down, delete .\data, docker compose up -d.
-3. Run: docker compose exec github-runner docker version. It must print a
-   server version.
+2. Run: docker compose down, delete .\data, docker compose up -d --build.
+3. Run: docker compose exec github-runner docker version and
+   docker compose exec github-runner docker compose version. Both must print
+   version information.
 4. Confirm in GitHub: repo -> Settings -> Actions -> Runners -> green Idle.
 
 Part 2 - align the app repo

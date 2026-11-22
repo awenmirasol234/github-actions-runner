@@ -1,6 +1,10 @@
 # Self-Hosted GitHub Actions Runner
 
-Runs one GitHub Actions runner for one repository, in Docker.
+Runs one GitHub Actions runner for one repository, in a custom Debian-based
+Docker image.
+
+The image includes the GitHub runner, Git, Docker CLI, and Docker Compose. It is
+intended for deployment jobs that pull images from GHCR and run Docker Compose.
 
 ## Use it for another repository
 
@@ -47,9 +51,12 @@ Two changes. Everything else in this folder stays the same.
 ## Start it
 
 ```
-docker compose up -d
+docker compose up -d --build
 docker compose logs -f
 ```
+
+The first start builds the local image and registers the runner with GitHub.
+Later starts reuse the identity stored in `data/`.
 
 Wait for `Listening for Jobs`. Then check the repository under
 Settings -> Actions -> Runners: the name from step 1 must show a green Idle dot.
@@ -93,6 +100,7 @@ Then delete the old runner in GitHub so it does not stay listed as offline.
 | Job stays queued, "No runner matching labels" | `runs-on` does not match the labels. |
 | Runner absent from the Runners page | Bad token, missing `repo` scope, or SSO not authorized. Check `docker compose logs`. |
 | Runner listed but Offline | Container stopped. `docker compose restart`. |
+| Image build fails | Check Docker Desktop connectivity and the build output. |
 | `docker: not found` in a job | Socket mount missing, or Docker Desktop is in Windows containers mode. |
 
 ## Connectivity health check

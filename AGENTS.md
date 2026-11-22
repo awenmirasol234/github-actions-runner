@@ -5,7 +5,9 @@ repository. The runner executes that repository's jobs on this machine.
 
 ## Files
 
-- `compose.yml` - the only service. Image `myoung34/github-runner:latest`.
+- `compose.yml` - the only service and custom image build configuration.
+- `Dockerfile` - Debian-based image with the GitHub runner and Docker tooling.
+- `runner-entrypoint.sh` - registers the runner and starts it.
 - `.env` - real values. Git ignored. Never commit.
 - `.env.example` - example values shown to new users.
 - `README.md` - user guide for reusing this folder on another repository.
@@ -31,11 +33,11 @@ missing. There are no fallbacks.
 ## How it works
 
 1. Container starts and reads `REPO_URL` and `ACCESS_TOKEN`.
-2. It requests a short-lived registration token from GitHub for that repo.
-3. It registers once, then stores its identity in `data/`.
-4. It polls that repo's job queue using the stored identity. The token is not
+2. `runner-entrypoint.sh` requests a short-lived registration token, registers
+   once, then stores its identity in `data/`.
+3. It polls that repo's job queue using the stored identity. The token is not
    used again unless re-registration is needed.
-5. A job runs only if the workflow is in that repo and `runs-on` matches the
+4. A job runs only if the workflow is in that repo and `runs-on` matches the
    labels.
 
 Changing `REPO_URL` or `RUNNER_NAME` does nothing until the identity is reset:
@@ -67,6 +69,7 @@ folder and use a different `RUNNER_NAME`.
 docker compose up -d
 docker compose logs -f
 docker compose exec github-runner docker version
+docker compose exec github-runner docker compose version
 docker compose config -q
 ```
 

@@ -18,6 +18,7 @@ RUNNER_NAME=my-runner
 Start and watch:
 
 ```
+docker compose build
 docker compose up -d
 docker compose logs -f      # wait for "Listening for Jobs"
 ```
@@ -178,6 +179,7 @@ curl -fsS http://localhost:<port>/health
 | No "Run workflow" button | Workflow file must be on the default branch |
 | Runner missing in Settings | Check `docker compose logs`, token or `repo` scope |
 | Runner Offline | `docker compose ps`, then `docker compose restart` |
+| Image build fails | Check Docker Desktop connectivity and the build output |
 | `docker: not found` in a job | Socket missing, or Desktop is in Windows containers mode |
 | Job ran on `fv-az...` | `self-hosted` missing from `runs-on` |
 
