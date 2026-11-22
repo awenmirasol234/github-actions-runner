@@ -1,6 +1,8 @@
 services:
   github-runner:
-    image: myoung34/github-runner:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: github-runner
     restart: unless-stopped
 
